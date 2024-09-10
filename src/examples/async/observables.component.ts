@@ -9,7 +9,7 @@ import {
 import { Todo } from './todo.models';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
-  combineLatestWith,
+  combineLatest,
   debounceTime,
   filter,
   map,
@@ -37,7 +37,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     }
   `,
 })
-export default class NewControlFlow implements OnInit {
+export default class NewControlFlow {
   #todoService = inject(TodoService);
   searchControl = new FormControl();
   #valueChanges$: Observable<string> = this.searchControl.valueChanges.pipe(
@@ -45,8 +45,7 @@ export default class NewControlFlow implements OnInit {
     debounceTime(250)
   );
   #todos$ = this.#todoService.todos;
-  filteredTodos$ = this.#todos$.pipe(
-    combineLatestWith(this.#valueChanges$),
+  filteredTodos$ = combineLatest([this.#todos$, this.#valueChanges$]).pipe(
     map(([todos, filter]: [Todo[], string]) => {
       if (filter) {
         return todos.filter((todo) =>
@@ -58,7 +57,7 @@ export default class NewControlFlow implements OnInit {
     })
   );
 
-  ngOnInit(): void {
+  constructor() {
     this.#valueChanges$
       .pipe(
         takeUntilDestroyed(),
