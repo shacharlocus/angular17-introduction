@@ -20,5 +20,6 @@ export class AppComponent {
     { title: 'New way to unsubscribe', link: 'unsubscribing-new' },
     { title: 'async - observables', link: 'observables' },
     { title: 'async - signals', link: 'signals' },
+    { title: 'inputs', link: 'inputs' },
   ];
 }

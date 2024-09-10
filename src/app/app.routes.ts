@@ -66,4 +66,8 @@ export const routes: Routes = [
     path: 'signals',
     loadComponent: async () => import('../examples/async/signals.component'),
   },
+  {
+    path: 'inputs',
+    loadComponent: async () => import('../examples/inputs/inputs-display.component'),
+  },
 ];
