@@ -17,13 +17,14 @@ export const routes: Routes = [
   },
   {
     path: 'control-flow-old',
-    loadComponent: async () => import('../examples/control-flow/old-syntax.component'),
+    loadComponent: async () => import('../examples/async/signals.component'),
     canActivate: [IsAuthenticatedGuardService],
     providers: [IsAuthenticatedGuardService],
   },
   {
     path: 'control-flow-new',
-    loadComponent: async () => import('../examples/control-flow/control-flow.component'),
+    loadComponent: async () =>
+      import('../examples/async/observables.component'),
     canActivate: [HasEnhancedFeatureToggle],
     providers: [HasEnhancedFeatureToggle],
   },
@@ -43,13 +44,26 @@ export const routes: Routes = [
   {
     path: 'unsubscribing-old',
     loadComponent: async () =>
-      import('../examples/unsubscribing/old-way-to-unsubscribe-on-destroy.component'),
+      import(
+        '../examples/unsubscribing/old-way-to-unsubscribe-on-destroy.component'
+      ),
     canActivate: [hasFeatureToggleGuard('enhanced')],
   },
   {
     path: 'unsubscribing-new',
     loadComponent: async () =>
-      import('../examples/unsubscribing/new-way-to-unsubscribe-on-destroy.component'),
-    canActivate: [hasFeatureToggleGuard('enhanced')],
+      import(
+        '../examples/unsubscribing/new-way-to-unsubscribe-on-destroy.component'
+      ),
+    canActivate: [isAuthenticatedGuard],
+  },
+  {
+    path: 'observables',
+    loadComponent: async () =>
+      import('../examples/async/observables.component'),
+  },
+  {
+    path: 'signals',
+    loadComponent: async () => import('../examples/async/signals.component'),
   },
 ];

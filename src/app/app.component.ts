@@ -18,5 +18,7 @@ export class AppComponent {
     { title: 'Deferrable views', link: 'deferrable-views-new' },
     { title: 'Old way to unsubscribe', link: 'unsubscribing-old' },
     { title: 'New way to unsubscribe', link: 'unsubscribing-new' },
+    { title: 'async - observables', link: 'observables' },
+    { title: 'async - signals', link: 'signals' },
   ];
 }
