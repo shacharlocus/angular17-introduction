@@ -17,14 +17,14 @@ export const routes: Routes = [
   },
   {
     path: 'control-flow-old',
-    loadComponent: async () => import('../examples/async/signals.component'),
+    loadComponent: async () => import('../examples/control-flow/old-syntax.component'),
     canActivate: [IsAuthenticatedGuardService],
     providers: [IsAuthenticatedGuardService],
   },
   {
     path: 'control-flow-new',
     loadComponent: async () =>
-      import('../examples/async/observables.component'),
+      import('../examples/control-flow/control-flow.component'),
     canActivate: [HasEnhancedFeatureToggle],
     providers: [HasEnhancedFeatureToggle],
   },
